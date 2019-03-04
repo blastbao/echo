@@ -201,7 +201,6 @@ func setWithProperType(valueKind reflect.Kind, val string, structField reflect.V
 		return err
 	}
 
-
 	switch valueKind {
 	case reflect.Ptr:
 		//判断 v 是否合法，如果返回 false，那么除了 String() 以外的其他方法调用都会 panic，事前检查是必要的
@@ -258,11 +257,7 @@ func unmarshalField(valueKind reflect.Kind, val string, field reflect.Value) (bo
 }
 
 // bindUnmarshaler attempts to unmarshal a reflect.Value into a BindUnmarshaler
-func bindUnmarshaler(field reflect.Value) (BindUnmarshaler, bool) {
-
-
-
-			
+func bindUnmarshaler(field reflect.Value) (BindUnmarshaler, bool) {	
 	ptr := reflect.New(field.Type())
 	//用CanInterface()来判断是否为可导出字段，读取未导出变量时会panic，
 	//panic: reflect.Value.Interface: cannot return value obtained from unexported field or method
@@ -273,7 +268,6 @@ func bindUnmarshaler(field reflect.Value) (BindUnmarshaler, bool) {
 			return unmarshaler, ok
 		}
 	}
-
 	//不可导出
 	return nil, false
 }
